@@ -17,52 +17,65 @@ import (
 )
 
 var AndroidAlgorithms = []string{
-	"Gez0T9ijiI9WCeTsKSg3SMlx",
-	"zQdbalsolyb1R/",
-	"ftOjr52zt51JD68C3s",
-	"yeOBMH0JkbQdEFNNwQ0RI9T3wU/v",
-	"BRJrQZiTQ65WtMvwO",
-	"je8fqxKPdQVJiy1DM6Bc9Nb1",
-	"niV",
-	"9hFCW2R1",
-	"sHKHpe2i96",
-	"p7c5E6AcXQ/IJUuAEC9W6",
-	"",
-	"aRv9hjc9P+Pbn+u3krN6",
-	"BzStcgE8qVdqjEH16l4",
-	"SqgeZvL5j9zoHP95xWHt",
-	"zVof5yaJkPe3VFpadPof",
+	"7xOq4Z8s",
+	"QE9/9+IQco",
+	"WdX5J9CPLZp",
+	"NmQ5qFAXqH3w984cYhMeC5TJR8j",
+	"cc44M+l7GDhav",
+	"KxGjo/wHB+Yx8Lf7kMP+/m9I+",
+	"wla81BUVSmDkctHDpUT",
+	"c6wMr1sm1WxiR3i8LDAm3W",
+	"hRLrEQCFNYi0PFPV",
+	"o1J41zIraDtJPNuhBu7Ifb/q3",
+	"U",
+	"RrbZvV0CTu3gaZJ56PVKki4IeP",
+	"NNuRbLckJqUp1Do0YlrKCUP",
+	"UUwnBbipMTvInA0U0E9",
+	"VzGc",
 }
 
 var WebAlgorithms = []string{
-	"C9qPpZLN8ucRTaTiUMWYS9cQvWOE",
-	"+r6CQVxjzJV6LCV",
-	"F",
-	"pFJRC",
-	"9WXYIDGrwTCz2OiVlgZa90qpECPD6olt",
-	"/750aCr4lm/Sly/c",
-	"RB+DT/gZCrbV",
-	"",
-	"CyLsf7hdkIRxRm215hl",
-	"7xHvLi2tOYP0Y92b",
-	"ZGTXXxu8E/MIWaEDB+Sm/",
-	"1UI3",
-	"E7fP5Pfijd+7K+t6Tg/NhuLq0eEUVChpJSkrKxpO",
-	"ihtqpG6FMt65+Xk+tWUH2",
-	"NhXXU9rg4XXdzo7u5o",
+	"fyZ4+p77W1U4zcWBUwefAIFhFxvADWtT1wzolCxhg9q7etmGUjXr",
+	"uSUX02HYJ1IkyLdhINEFcCf7l2",
+	"iWt97bqD/qvjIaPXB2Ja5rsBWtQtBZZmaHH2rMR41",
+	"3binT1s/5a1pu3fGsN",
+	"8YCCU+AIr7pg+yd7CkQEY16lDMwi8Rh4WNp5",
+	"DYS3StqnAEKdGddRP8CJrxUSFh",
+	"crquW+4",
+	"ryKqvW9B9hly+JAymXCIfag5Z",
+	"Hr08T/NDTX1oSJfHk90c",
+	"i",
+}
+
+var PCAlgorithms = []string{
+	"KHBJ07an7ROXDoK7Db",
+	"G6n399rSWkl7WcQmw5rpQInurc1DkLmLJqE",
+	"JZD1A3M4x+jBFN62hkr7VDhkkZxb9g3rWqRZqFAAb",
+	"fQnw/AmSlbbI91Ik15gpddGgyU7U",
+	"/Dv9JdPYSj3sHiWjouR95NTQff",
+	"yGx2zuTjbWENZqecNI+edrQgqmZKP",
+	"ljrbSzdHLwbqcRn",
+	"lSHAsqCkGDGxQqqwrVu",
+	"TsWXI81fD1",
+	"vk7hBjawK/rOSrSWajtbMk95nfgf3",
 }
 
 const (
 	AndroidClientID      = "YNxT9w7GMdWvEOKa"
 	AndroidClientSecret  = "dbw2OtmVEeuUvIptb1Coyg"
-	AndroidClientVersion = "1.47.1"
+	AndroidClientVersion = "1.49.3"
 	AndroidPackageName   = "com.pikcloud.pikpak"
-	AndroidSdkVersion    = "2.0.4.204000"
+	AndroidSdkVersion    = "2.0.4.204101"
 	WebClientID          = "YUMx5nI8ZU8Ap8pm"
 	WebClientSecret      = "dbw2OtmVEeuUvIptb1Coyg"
-	WebClientVersion     = "2.0.0"
-	WebPackageName       = "mypikpak.com"
+	WebClientVersion     = "undefined"
+	WebPackageName       = "drive.mypikpak.com"
 	WebSdkVersion        = "8.0.3"
+	PCClientID           = "YvtoWO6GNHiuCl7x"
+	PCClientSecret       = "1NIH5R1IEe2pAxZE3hv3uA"
+	PCClientVersion      = "undefined" // 2.5.6.4831
+	PCPackageName        = "mypikpak.com"
+	PCSdkVersion         = "8.0.3"
 )
 
 func (d *PikPakShare) request(url string, method string, callback base.ReqCallback, resp interface{}) ([]byte, error) {
@@ -109,7 +122,7 @@ func (d *PikPakShare) getSharePassToken() error {
 		"limit":          "100",
 	}
 	var resp ShareResp
-	_, err := d.request("https://api-drive.mypikpak.com/drive/v1/share", http.MethodGet, func(req *resty.Request) {
+	_, err := d.request("https://api-drive.mypikpak.net/drive/v1/share", http.MethodGet, func(req *resty.Request) {
 		req.SetQueryParams(query)
 	}, &resp)
 	if err != nil {
@@ -137,7 +150,7 @@ func (d *PikPakShare) getFiles(id string) ([]File, error) {
 			"pass_code_token": d.PassCodeToken,
 		}
 		var resp ShareResp
-		_, err := d.request("https://api-drive.mypikpak.com/drive/v1/share/detail", http.MethodGet, func(req *resty.Request) {
+		_, err := d.request("https://api-drive.mypikpak.net/drive/v1/share/detail", http.MethodGet, func(req *resty.Request) {
 			req.SetQueryParams(query)
 		}, &resp)
 		if err != nil {
@@ -294,7 +307,7 @@ func (d *PikPakShare) refreshCaptchaToken(action string, metas map[string]string
 	}
 	var e ErrResp
 	var resp CaptchaTokenResponse
-	_, err := d.request("https://user.mypikpak.com/v1/shield/captcha/init", http.MethodPost, func(req *resty.Request) {
+	_, err := d.request("https://user.mypikpak.net/v1/shield/captcha/init", http.MethodPost, func(req *resty.Request) {
 		req.SetError(&e).SetBody(param)
 	}, &resp)
 
